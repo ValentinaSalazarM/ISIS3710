@@ -1,0 +1,41 @@
+#banner {
+    background-color: #5B493C;
+    color: #E6E3DA;
+    padding: 2rem;
+    margin: 0;
+}
+
+
+#left-menu {
+    background-color: orange;
+}
+
+#top-menu {
+    background-color: #C39182;
+
+}
+
+#main-content {
+    background-color: #F2F2F2;
+    font-weight: bold;
+    height: 40vh;
+}
+
+#photo-odd, #photo-even {
+    font-weight: bold;
+    margin: 0%;
+}
+
+#photo-odd {
+    background-color: #C5697A;
+}
+
+#photo-even {
+    background-color: #00A2B6;
+}
+
+#footer {
+    background-color: #5B493C;
+    color: #E6E3DA;
+    height: 2.5rem;
+}
