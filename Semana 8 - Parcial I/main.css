@@ -1,0 +1,25 @@
+@font-face {
+    font-family: fuenteRestaurante;
+    src: url(Satisfy/Satisfy-Regular.ttf);
+}
+
+#nombre-restaurante{
+    font-family: fuenteRestaurante;
+    font-size: 3rem;
+    display:inline-block;
+    margin-right:45%;
+}
+
+#carro-compra {
+    display:inline-block
+}
+
+#categorias {
+    margin-top: 2rem;
+}
+
+#productos
+{
+    display: flex;
+    flex-direction: row;
+}
