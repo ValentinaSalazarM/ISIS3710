@@ -1,72 +1,53 @@
 ruta = "archivo.json";
 
+let listaDatos = [];
+let ordAscendente = { "Last Name": false, "First Name": false, "Email": false, "Photo": false };
+const mapeoNombres = { "Last Name": "last_name", "First Name": "first_name", "Email": "email", "Photo": "photo" };
+
 fetch(ruta)
   .then((res) => res.json())
   .then((datos) => {
-    console.log(datos);
-    let encabezados = ["Last Name", "First Name", "Email", "Photo"];
-    let listaDatos = crearTablaDatos(datos, encabezados);
-    console.log(listaDatos);
+
+    let atributos = ["last_name", "first_name", "email", "photo"];
+    listaDatos = insertarDatos(datos, atributos);
 
     const encabezado = document.querySelectorAll("th");
     for (let i = 0; i < encabezado.length; i++) {
       encabezado[i].onclick = ordenarElementos;
     }
 
-    function ordenarElementos(element) {
-      criterio = element.target.innerHTML;
-
-      listaDatos.sort(function (a, b) {
-        return b[criterio] - a[criterio];
-      });
-    }
   });
 
-function crearTablaDatos(datos, encabezados) {
-  console.log(encabezados);
-  const contenedor = document.getElementById("contenedor");
-  contenedor.style.margin = "1rem";
+function eliminarElemento(idPadre, idHijo) {
+  const padre = document.getElementById(idPadre);
+  const hijo = document.getElementById(idHijo);
+  padre.removeChild(hijo);
+}
+
+function insertarDatos(datos, atributos) {
 
   let listaDatos = [];
-
-  // Crear secciones de la tabla
-  const tabla = document.createElement("table");
-  const tblHead = document.createElement("thead");
-  const tblBody = document.createElement("tbody");
-
-  tabla.style.margin = "2rem";
-  tabla.className = "table table-striped";
-
-  // Encabezados de la tabla
-
-  for (let i = 0; encabezados.length; i++) {
-    let nuevoEncabezado = document.createElement("th");
-    let texto = document.createTextNode(encabezados[i]);
-    nuevoEncabezado.append(texto);
-    tblHead.appendChild(nuevoEncabezado);
-  }
+  let table = document.querySelector("table");
+  let tblBody = document.createElement("tbody");
 
   for (let i = 0; i < datos.length; i++) {
-    actual = datos[i];
 
-    // Crear una nueva fila de la tabla
+    actual = datos[i];
     let fila = document.createElement("tr");
 
-    //Completar las columnas y añadirlas a la fila
-    let columnaLN = document.createElement("td");
-    let textoLN = document.createTextNode(actual.last_name);
-    columnaLN.appendChild(textoLN);
-    fila.appendChild(columnaLN);
+    fila.id = "fila-" + i;
+    fila.onmouseup = cambiarColor;
 
-    let columnaFN = document.createElement("td");
-    let textoFN = document.createTextNode(actual.first_name);
-    columnaFN.appendChild(textoFN);
-    fila.appendChild(columnaFN);
+    let nuevoElemento = {};
 
-    let columnaEmail = document.createElement("td");
-    let textoEmail = document.createTextNode(actual.email);
-    columnaEmail.appendChild(textoEmail);
-    fila.appendChild(columnaEmail);
+    for (let j = 0; j < atributos.length - 1; j++) {
+      let columna = document.createElement("td");
+      let texto = document.createTextNode(actual[atributos[j]]);
+      columna.appendChild(texto);
+      fila.appendChild(columna);
+
+      nuevoElemento[atributos[j]] = actual[atributos[j]];
+    }
 
     let columnaImagen = document.createElement("td");
     let imagen = document.createElement("img");
@@ -74,25 +55,81 @@ function crearTablaDatos(datos, encabezados) {
     columnaImagen.appendChild(imagen);
     fila.appendChild(columnaImagen);
 
-    // Incluir la fila en la tabla
-    tblBody.appendChild(fila);
+    nuevoElemento["photo"] = actual.photo;
 
-    //Adicionar el objeto a la lista
-    nuevoElemento = {
-      "Last Name": actual.last_name,
-      "First Name": actual.first_name,
-      Email: actual.email,
-      Photo: actual.photo,
-    };
+    let columnaBoton = document.createElement("td");
+    let botonEliminar = document.createElement("button");
+    let texto = document.createTextNode("Eliminar fila");
+    botonEliminar.className = "btn btn-secondary";
+    botonEliminar.style.display = 'block';
+    botonEliminar.style.margin = "0.75rem";
+    botonEliminar.appendChild(texto);
+    botonEliminar.onclick = eliminarFila;
+
+
+    let botonActualizar = document.createElement("button");
+    texto = document.createTextNode("Actualizar fila");
+    botonActualizar.className = "btn btn-primary";
+    botonActualizar.style.display = 'block';
+    botonActualizar.style.margin = "0.75rem";
+    botonActualizar.appendChild(texto);
+    botonActualizar.onclick = actualizarFila;
+
+    columnaBoton.appendChild(botonEliminar);
+    columnaBoton.appendChild(botonActualizar);
+
+    fila.appendChild(columnaBoton);
+
     listaDatos.push(nuevoElemento);
+
+    tblBody.appendChild(fila);
+    table.appendChild(tblBody);
+  }
+  return listaDatos;
+}
+
+
+function ordenarElementos(elemento) {
+  let columna = elemento.target.innerHTML;
+  let criterio = mapeoNombres[columna];
+
+  if (ordAscendente[criterio] === false) {
+    listaDatos.sort((a, b) => (a[criterio] > b[criterio]) ? 1 : ((b[criterio] > a[criterio]) ? -1 : 0));
+    ordAscendente[criterio] = true;
+  }
+  else {
+    listaDatos.sort((a, b) => (a[criterio] < b[criterio]) ? 1 : ((b[criterio] < a[criterio]) ? -1 : 0));
+    ordAscendente[criterio] = false;
   }
 
-  // Añadir las secciones de la tabla
-  tabla.appendChild(tblHead);
-  tabla.appendChild(tblBody);
+  let atributos = ["last_name", "first_name", "email", "photo"];
 
-  // Adicionar la tabla
-  contenedor.appendChild(tabla);
+  eliminarElemento("table", "tbody");
+  let nuevaLista = crearTablaDatos(listaDatos, atributos);
+  listaDatos = [...nuevaLista];
+}
 
-  return listaDatos;
+/* Respuesta a eventos */
+
+function cambiarColor(elemento) {
+  elemento.target.parentNode.style.backgroundColor = "cornflowerblue";
+}
+
+
+function eliminarFila(elemento) {
+  let identificador = elemento.target.parentNode.parentNode.id;
+  console.log(elemento.target.parentNode.parentNode)
+  let fila = document.getElementById(identificador);
+
+  let tblBody = document.querySelector("tbody");
+  console.log(fila, tblBody)
+  tblBody.removeChild(fila);
+
+}
+
+function actualizarFila(elemento) {
+  let identificador = elemento.target.id;
+  console.log(identificador)
+  console.log(tabla)
+  eliminarElemento("tabla-principal", identificador);
 }
