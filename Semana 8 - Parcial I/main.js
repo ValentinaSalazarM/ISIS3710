@@ -323,12 +323,12 @@ function modificarCantidadItem(elemento) {
 }
 
 function enviarPedido() {
-  console.log(carrito_compras);
+  console.log(items_carrito);
 }
 
 function cancelarOrden() {
   const contador = document.getElementById("contador-items");
   contador.innerText = "0 items";
-  carrito_compras = [];
+  items_carrito = [];
   eliminarContenido();
 }
