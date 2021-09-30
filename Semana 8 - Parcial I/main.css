@@ -7,19 +7,48 @@
     font-family: fuenteRestaurante;
     font-size: 3rem;
     display:inline-block;
-    margin-right:45%;
+    width: 80%;
 }
 
 #carro-compra {
-    display:inline-block
+    display:inline-block;
 }
 
 #categorias {
-    margin-top: 2rem;
+    width: 100%;
+    padding: 2rem 0 2rem 0;
+    border-top: 1px solid #EEEEEE;
+    border-bottom: 1px solid #EEEEEE
 }
 
-#productos
+
+#imagen-principal
 {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px solid #EEEEEE;
+}
+
+.navbar-nav{
+    padding: 0.35rem;
+}
+
+.nav-item{
+    margin-right: 0.55rem;
+}
+
+#titulo_producto
+{
+    text-align: center;
+    font-weight: bold;
+}
+
+#productos{
+    margin:1.5rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
 }

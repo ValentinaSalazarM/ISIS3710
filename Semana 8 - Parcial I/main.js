@@ -20,12 +20,13 @@ function crearContenido(datos) {
     let nuevo_a = document.createElement("a");
     let texto_nuevo = document.createTextNode(categoria);
 
-    nuevo_a.className = "nav-link";
+    nuevo_a.className = "nav-link active";
     nuevo_a.id = categoria;
     nuevo_list_item.className = "nav-item";
 
     nuevo_a.appendChild(texto_nuevo);
     nuevo_a.onclick = actualizarContenido;
+    nuevo_a.setAttribute("href", "#");
 
     nuevo_list_item.appendChild(nuevo_a);
 
@@ -46,55 +47,92 @@ function crearContenido(datos) {
 
 function actualizarContenido(elemento) {
   let categoria = elemento.target.id;
-
   let indice = nombres_categorias.indexOf(categoria);
   let productos_categoria = listas_categorias[indice];
 
+  const titulo_productos = document.getElementById("titulo_producto");
+  titulo_productos.innerHTML = categoria;
+
+  eliminarContenido();
+
   const contenedor_productos = document.getElementById("productos");
 
-  let card = document.createElement("div");
-  card.className = "card";
-  card.style.width = "18rem";
+  for (let j = 0; j < productos_categoria.length / 4; j++) {
+    let fila = document.createElement("div");
+    fila.className = "row";
 
-  for (let i = 0; i < productos_categoria.length; i++) {
-    let producto = productos_categoria[i];
+    for (let i = j * 4; i < j * 4 + 4; i++) {
+      let producto = productos_categoria[i];
 
-    let img = document.createElement("img");
-    img.className = "card-img-top";
-    img.src = producto.image;
+      if (!producto) {
+        break;
+      }
 
-    let card_body = document.createElement("div");
-    card_body.className = "card-body";
+      let columna = document.createElement("div");
+      columna.className = "col-lg-3 d-flex align-items-stretch";
 
-    let card_title = document.createElement("h5");
-    let card_title_texto = document.createTextNode(producto.name);
-    card_title.appendChild(card_title_texto);
-    card_title.className = "card-title";
+      let card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "15rem";
 
-    let card_text = document.createElement("p");
-    let card_texto = document.createTextNode(producto.description);
-    card_text.appendChild(card_texto);
-    card_text.className = "card-text";
+      let contenedor_interno = document.createElement("div");
+      contenedor_interno.className = "embed-responsive embed-responsive-16by9";
 
-    let card_price = document.createElement("p");
-    let card_price_texto = document.createTextNode(producto.price);
-    card_price.appendChild(card_price_texto);
-    card_price.className = "card-text";
-    card_price.style.fontWeight = "bold";
+      let img = document.createElement("img");
+      img.className = "card-img-top";
+      img.src = producto.image;
 
-    let boton = document.createElement("a");
-    let boton_texto = document.createTextNode("Add to car");
-    boton.appendChild(boton_texto);
-    boton.className = "btn btn-dark";
-    boton.onclick = añadirItem;
+      let card_body = document.createElement("div");
+      card_body.className = "card-body";
 
-    card.appendChild(img);
-    card.appendChild(card_body);
-    card_body.appendChild(card_title);
-    card_body.appendChild(card_text);
-    card_body.appendChild(boton);
+      let card_title = document.createElement("h5");
+      let card_title_texto = document.createTextNode(producto.name);
+      card_title.appendChild(card_title_texto);
+      card_title.className = "card-title";
+
+      let card_text = document.createElement("p");
+      let card_texto = document.createTextNode(producto.description);
+      card_text.appendChild(card_texto);
+      card_text.className = "card-text";
+
+      let card_price = document.createElement("p");
+      let card_price_texto = document.createTextNode(producto.price);
+      card_price.appendChild(card_price_texto);
+      card_price.className = "card-text";
+      card_price.style.fontWeight = "bold";
+
+      let boton = document.createElement("a");
+      let boton_texto = document.createTextNode("Add to car");
+      boton.appendChild(boton_texto);
+      boton.className = "btn btn-dark";
+      boton.onclick = añadirItem;
+
+      card_body.appendChild(card_title);
+      card_body.appendChild(card_text);
+      card_body.appendChild(boton);
+
+      card.appendChild(img);
+      card.appendChild(card_body);
+
+      contenedor_interno.appendChild(card);
+      columna.appendChild(contenedor_interno);
+      fila.appendChild(contenedor_interno);
+    }
+    contenedor_productos.appendChild(fila);
   }
-  contenedor_productos.appendChild(card);
 }
 
-function añadirItem() {}
+function eliminarContenido() {
+  let filas = document.getElementsByClassName("row");
+  let nodo_padre = document.getElementById("productos");
+  let numeroFilas = filas.length;
+
+  for (let j = numeroFilas - 1; j >= 0; j--) {
+    nodo_padre.removeChild(filas[j]);
+  }
+}
+
+function añadirItem() {
+  let contador = document.getElementById("contador-items");
+  console.log(contador);
+}
