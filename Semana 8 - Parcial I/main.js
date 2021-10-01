@@ -13,6 +13,7 @@ let nombres_categorias = [];
 let items_carrito = [];
 
 /* Funciones genéricas que controlan la información desplegada */
+
 function cargarContenido(datos) {
   const carrito_compras = document.getElementById("carro-compra");
   carrito_compras.onclick = resumenPedido;
@@ -227,8 +228,8 @@ function resumenPedido() {
       actual.item,
       actual.quantity,
       actual.description,
-      actual.unitPrice,
-      actual.quantity * actual.unitPrice,
+      actual.unitPrice.toFixed(2),
+      (actual.quantity * actual.unitPrice).toFixed(2),
     ];
 
     for (let j = 0; j < propiedades_actual.length; j++) {
@@ -243,14 +244,14 @@ function resumenPedido() {
     let btn_agregar = document.createElement("button");
     let btn_texto = document.createTextNode("+");
     btn_agregar.className = "tabla-btn btn btn-secondary";
-    btn_agregar.id = "btnAgregar-" + actual.description;
+    btn_agregar.id = "btnAgregar:" + actual.description;
     btn_agregar.appendChild(btn_texto);
     btn_agregar.onclick = modificarCantidadItem;
 
     let btn_eliminar = document.createElement("button");
     btn_texto = document.createTextNode("-");
     btn_eliminar.className = "tabla-btn btn btn-secondary";
-    btn_eliminar.id = "btnEliminar-" + actual.description;
+    btn_eliminar.id = "btnEliminar:" + actual.description;
     btn_eliminar.appendChild(btn_texto);
     btn_eliminar.onclick = modificarCantidadItem;
 
@@ -260,7 +261,7 @@ function resumenPedido() {
     fila.appendChild(columna_botones);
     tblBody.appendChild(fila);
 
-    precio_total += actual.unitPrice;
+    precio_total += actual.quantity * actual.unitPrice;
   }
   tabla.appendChild(tblBody);
   contenedor.appendChild(tabla);
@@ -304,7 +305,7 @@ function resumenPedido() {
 }
 
 function modificarCantidadItem(elemento) {
-  let arreglo_cadena = elemento.target.id.split("-");
+  let arreglo_cadena = elemento.target.id.split(":");
   let tipo_boton = arreglo_cadena[0];
   let nombre_producto = arreglo_cadena[1];
 
@@ -330,5 +331,5 @@ function cancelarOrden() {
   const contador = document.getElementById("contador-items");
   contador.innerText = "0 items";
   items_carrito = [];
-  eliminarContenido();
+  resumenPedido();
 }
