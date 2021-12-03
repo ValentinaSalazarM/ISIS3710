@@ -1,0 +1,84 @@
+{
+  "hName": "Nombre",
+  "hDirectedBy": "Dirigido por",
+  "hCountry": "País",
+  "hBudget": "Presupuesto",
+  "hReleaseDate": "Fecha de estreno",
+  "hViews": "Vistas",
+  "Million": "millón",
+  "Millions": "millones",
+  "movies": [
+    {
+      "id": 1,
+      "name": "Casablanca",
+      "directedBy": "Michael Curtiz",
+      "country": "Estados Unidos",
+      "budget": 1,
+      "views": 1256000,
+      "releaseDate": "1942-05-01",
+      "description": "Casablanca es una película dramática romántica estadounidense de 1942 dirigida por Michael Curtiz basada en la obra teatral de Murray Burnett y Joan Alison Everybody Comes to Rick's. La película está protagonizada por Humphrey Bogart, Ingrid Bergman y Paul Henreid; también presenta a Claude Rains, Conrad Veidt, Sydney Greenstreet, Peter Lorre y Dooley Wilson. Ambientada durante la Segunda Guerra Mundial, se centra en un expatriado estadounidense que debe elegir entre su amor por una mujer y ayudarla a ella y a su esposo, un líder de la resistencia checa, a escapar de la ciudad de Casablanca controlada por Vichy para continuar su lucha contra los nazis.",
+      "cast": "Humphrey Bogart, Ingrid Bergman y Paul Henreid",
+      "poster": "https://i.imgur.com/eM1Kkri.jpg"
+    },
+    {
+      "id": 2,
+      "name": "El abrazo de la serpiente",
+      "directedBy": "Ciro Guerra",
+      "country": "Colombia",
+      "budget": 2,
+      "views": 7256000,
+      "releaseDate": "2015-12-23",
+      "description": "El abrazo de la serpiente es una película dramática de aventuras coproducida internacionalmente en 2015 dirigida por Ciro Guerra y escrita por Guerra y Jacques Toulemonde Vidal. Rodada casi en su totalidad en blanco y negro, la película sigue dos viajes separados por treinta años por el chamán indígena Karamakate en la selva amazónica colombiana, uno con Theo, un etnógrafo alemán, y el otro con Evan, un botánico estadounidense, ambos de los cuales están buscando la rara planta yakruna. Se inspiró en los diarios de viaje de Theodor Koch-Grunberg y Richard Evans Schultes, y se dedicó a las culturas amazónicas perdidas.",
+      "cast": "Nilbio Torres, Antonio Bolívar, Jan Bijvoet, Brionne Davis y Luigi Sciamanna",
+      "poster": "https://i.imgur.com/5evik9m.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Amélie",
+      "directedBy": "Jean-Pierre Jeunet",
+      "country": "Francia",
+      "budget": 3,
+      "views": 856000,
+      "releaseDate": "2001-04-28",
+      "description": "Amelie es una película de comedia romántica francesa de 2001 dirigida por Jean-Pierre Jeunet. Escrita por Jeunet con Guillaume Laurant, la película es una representación caprichosa de la vida parisina contemporánea, ambientada en Montmartre.",
+      "cast": "Audrey Tautou, Flora Guiet, Mathieu Kassovitz, Amaury Babault",
+      "poster": "https://i.imgur.com/gRzAmAI.jpg"
+    },
+    {
+      "id": 4,
+      "name": "La ola",
+      "directedBy": "Dennis Gansel",
+      "country": "Alemania",
+      "budget": 5,
+      "views": 2300000,
+      "releaseDate": "2008-05-29",
+      "description": "Die Welle (The Wave) es una película de suspenso sociopolítico alemana de 2008 dirigida por Dennis Gansel y protagonizada por Jürgen Vogel, Frederick Lau, Jennifer Ulrich y Max Riemelt. Se basa en el experimento social de Ron Jones, The Third Wave, y en la novela de Todd Strasser, The Wave. La película fue producida por Christian Becker para Rat Pack Filmproduktion. Tuvo éxito en los cines alemanes, y después de diez semanas, 2,3 millones de personas lo vieron.",
+      "cast": "Jürgen Vogel, Frederick Lau, Max Riemelt",
+      "poster": "https://i.imgur.com/rfkxsqx.jpg"
+    },
+    {
+      "id": 5,
+      "name": "El secreto de sus ojos",
+      "directedBy": "Juan José Campanella",
+      "country": "Argentina",
+      "budget": 2,
+      "views": 4256000,
+      "releaseDate": "2009-09-19",
+      "description": "El secreto de sus ojos es una película de drama criminal de 2009 dirigida, coescrita, producida y editada por Juan José Campanella, basada en la novela La pregunta de sus ojos, de Eduardo Sacheri, quien también coescribió el guión. La película es una producción conjunta de compañías argentinas y españolas.",
+      "cast": "Ricardo Darín, Soledad Villamil y Guillermo Francella",
+      "poster": "https://i.imgur.com/jBpbtDL.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Siete samurais",
+      "directedBy": "Akira Kurosawa",
+      "country": "Japón",
+      "budget": 1,
+      "views": 9256000,
+      "releaseDate": "1954-02-06",
+      "description": "Seven Samurai (Japanese: 七人の侍 Hepburn: Shichinin no Samurai) is a 1954 Japanese epic samurai drama film co-written, edited, and directed by Akira Kurosawa. The story takes place in 1586[2] during the Sengoku period of Japanese history. It follows the story of a village of farmers that hire seven rōnin (masterless samurai) to combat bandits who will return after the harvest to steal their crops.",
+      "cast": "Takashi Shimura, Yoshio Inaba, Daisuke Katō, Seiji Miyaguchi, Minoru Chiaki, Isao Kimura, Toshiro Mifune",
+      "poster": "https://i.imgur.com/v1uRssS.jpg"
+    }
+  ]
+}
