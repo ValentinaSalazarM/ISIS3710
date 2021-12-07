@@ -19,7 +19,7 @@ export default function TableDevices(props) {
         </thead>
         <tbody>
           {props.devices.map((current, i) => (
-            <tr>
+            <tr key={i}>
               <th scope="row">{i + 1}</th>
               <td>{i}</td>
               <td>{current.name}</td>

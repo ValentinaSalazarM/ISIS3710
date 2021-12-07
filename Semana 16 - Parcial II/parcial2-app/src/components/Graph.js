@@ -34,12 +34,6 @@ function Graph(props) {
 
     const arc = svg.selectAll().data(pieGenerator(data)).enter();
 
-    const tooldiv = canvas
-      .append("div")
-      .style("visibility", "visible")
-      .style("position", "absolute")
-      .style("background-color", "black");
-
     arc
       .append("path")
       .attr("d", arcGenerator)
@@ -51,24 +45,6 @@ function Graph(props) {
         (d) =>
           `${d.data.name}: ${d.data.powerUsage.value}  ${d.data.powerUsage.unit}`
       );
-    /* .on("mouseover", (e, d) => {
-        tooldiv
-          .style("visiblity", "visible")
-          .style("top", e.pageY - 50 + "px")
-          .style("left", e.pageX - 50 + "px")
-          .text(
-            `${d.data.name}: ${d.data.powerUsage.value}  ${d.data.powerUsage.unit}`
-          );
-      })
-      .on("mousemove", (e, d) => {
-        tooldiv
-          .style("visiblity", "visible")
-          .style("top", e.pageY - 50 + "px")
-          .style("left", e.pageX - 50 + "px");
-      })
-      .on("mouseout", () => {
-        tooldiv.style("visibility", "hidden");
-      }); */
   }
 
   return <div id="canvas"> </div>;
