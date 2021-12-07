@@ -4,5 +4,6 @@
   "device": "Dispositivos",
   "value": "Valor",
   "titleStats": "Estadísticas",
-  "titleGraph": "Consumo de energía (kwH) - Hoy"
+  "titleGraph": "Consumo de energía (kwH) - Hoy",
+  "messageOffline": "Por favor, conéctese a Internet."
 }

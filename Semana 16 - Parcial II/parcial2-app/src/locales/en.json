@@ -4,5 +4,6 @@
   "device": "Devices",
   "value": "Value",
   "titleStats": "Stats",
-  "titleGraph": "Power usage (kwH) - Today"
+  "titleGraph": "Power usage (kwH) - Today",
+  "messageOffline": "Please connect to the Internet."
 }

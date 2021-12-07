@@ -28,6 +28,8 @@ export default function Spaces(props) {
       if (spacesStorage !== null) {
         spacesStorage = JSON.parse(spacesStorage);
         setSpaces(spacesStorage);
+      } else {
+        setSpaces([]);
       }
     }
   }, [spaces]);
@@ -48,7 +50,10 @@ export default function Spaces(props) {
       ) : (
         <div>
           {" "}
-          <p> Por favor, conéctese a una red de internet. </p>{" "}
+          <p>
+            {" "}
+            <FormattedMessage id="messageOffline" />{" "}
+          </p>{" "}
         </div>
       )}
     </div>

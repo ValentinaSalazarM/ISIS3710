@@ -7,7 +7,6 @@ import Graph from "./Graph";
 export default function Rooms(props) {
   const [rooms, setRooms] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
-
   const [roomSelected, setRoomSelected] = useState(null);
 
   useEffect(() => {
@@ -25,6 +24,9 @@ export default function Rooms(props) {
       if (data) {
         data = JSON.parse(data);
         filterData(data);
+      } else {
+        setRooms([]);
+        setAllRooms([]);
       }
     }
 
@@ -87,7 +89,10 @@ export default function Rooms(props) {
       ) : (
         <div>
           {" "}
-          <p> Por favor, conéctese a una red de internet. </p>
+          <p>
+            {" "}
+            <FormattedMessage id="messageOffline" />{" "}
+          </p>
         </div>
       )}
     </div>
