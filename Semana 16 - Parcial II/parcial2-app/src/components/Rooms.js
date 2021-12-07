@@ -8,7 +8,7 @@ export default function Rooms(props) {
   const [rooms, setRooms] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
 
-  const [roomSelected, setRoomSelected] = useState({});
+  const [roomSelected, setRoomSelected] = useState(null);
 
   useEffect(() => {
     if (navigator.onLine) {
@@ -17,41 +17,39 @@ export default function Rooms(props) {
       fetch(urlrooms)
         .then((res) => res.json())
         .then((data) => {
-          let columnRooms = [];
-          let newRow = [];
-          let allRoomsTemp = [];
-          for (let i = 0; i < data.length; i++) {
-            if (data[i].homeId === props.idSpace) {
-              allRoomsTemp.push(data[i]);
-              newRow.push(data[i]);
-              if (newRow.length === 3) {
-                columnRooms.push(newRow);
-                newRow = [];
-              }
-            }
-          }
-          if (newRow !== []) {
-            columnRooms.push(newRow);
-          }
-          setAllRooms(allRoomsTemp);
-          setRooms(columnRooms);
-
-          localStorage.setItem("allRooms", JSON.stringify(allRoomsTemp));
-          localStorage.setItem("rooms", JSON.stringify(columnRooms));
+          filterData(data);
+          localStorage.setItem("dataRooms", JSON.stringify(data));
         });
     } else {
-      let allRoomsFromStorage = localStorage.getItem("allRooms");
-
-      let roomsFromStorage = localStorage.getItem("rooms");
-
-      if (roomsFromStorage && allRoomsFromStorage) {
-        roomsFromStorage = JSON.parse(roomsFromStorage);
-        allRoomsFromStorage = JSON.parse(allRoomsFromStorage);
-        setAllRooms(allRoomsFromStorage);
-        setRooms(roomsFromStorage);
+      let data = localStorage.getItem("dataRooms");
+      if (data) {
+        data = JSON.parse(data);
+        filterData(data);
       }
     }
+
+    function filterData(data) {
+      let columnRooms = [];
+      let newRow = [];
+      let allRoomsTemp = [];
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].homeId === props.idSpace) {
+          allRoomsTemp.push(data[i]);
+          newRow.push(data[i]);
+          if (newRow.length === 3) {
+            columnRooms.push(newRow);
+            newRow = [];
+          }
+        }
+      }
+      if (newRow !== []) {
+        columnRooms.push(newRow);
+      }
+      setAllRooms(allRoomsTemp);
+      setRooms(columnRooms);
+    }
   }, [props.idSpace]);
+
   return (
     <div>
       {rooms !== [] ? (

@@ -25,11 +25,9 @@ export default function Spaces(props) {
         });
     } else {
       let spacesStorage = localStorage.getItem("space");
-      console.log("CONECTADO ", spacesStorage);
       if (spacesStorage !== null) {
         spacesStorage = JSON.parse(spacesStorage);
         setSpaces(spacesStorage);
-        console.log("GUARDADO ", spaces);
       }
     }
   }, [spaces]);
