@@ -8,9 +8,11 @@ export default function Rooms(props) {
   const [rooms, setRooms] = useState([]);
   const [allRooms, setAllRooms] = useState([]);
   const [roomSelected, setRoomSelected] = useState(null);
+  const [conexion, setConexion] = useState(false);
 
   useEffect(() => {
     if (navigator.onLine) {
+      setConexion(true);
       let urlrooms =
         "https://gist.githubusercontent.com/josejbocanegra/92c90d5f2171739bd4a76d639f1271ea/raw/9effd124c825f7c2a7087d4a50fa4a91c5d34558/rooms.json";
       fetch(urlrooms)
@@ -24,9 +26,9 @@ export default function Rooms(props) {
       if (data) {
         data = JSON.parse(data);
         filterData(data);
+        setConexion(true);
       } else {
-        setRooms([]);
-        setAllRooms([]);
+        setConexion(false);
       }
     }
 
@@ -54,7 +56,7 @@ export default function Rooms(props) {
 
   return (
     <div>
-      {rooms !== [] ? (
+      {conexion ? (
         <div>
           <div className="row">
             <div className="col-8">

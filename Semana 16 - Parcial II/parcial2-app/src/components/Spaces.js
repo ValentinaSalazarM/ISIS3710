@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import RowSpaces from "./RowSpaces";
+import { FormattedMessage } from "react-intl";
 
 export default function Spaces(props) {
   const [spaces, setSpaces] = useState([]);
+  const [conexion, setConexion] = useState(false);
 
   useEffect(() => {
     if (navigator.onLine) {
+      setConexion(true);
       let urlSpaces =
         "https://gist.githubusercontent.com/josejbocanegra/0067d2b28b009140fee423cfc84e40e6/raw/6e6b11160fbcacb56621b6422684d615dc3a0d33/spaces.json";
       fetch(urlSpaces)
@@ -28,14 +31,15 @@ export default function Spaces(props) {
       if (spacesStorage !== null) {
         spacesStorage = JSON.parse(spacesStorage);
         setSpaces(spacesStorage);
+        setConexion(true);
       } else {
-        setSpaces([]);
+        setConexion(false);
       }
     }
   }, [spaces]);
   return (
     <div>
-      {spaces !== [] ? (
+      {conexion ? (
         <div className="container">
           <div className="container">
             {spaces.map((current, i) => (
